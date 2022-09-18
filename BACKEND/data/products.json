@@ -1,16 +1,1 @@
-[
-  {
-    "id": "123245",
-    "title": "A Book",
-    "imageUrl": "https://www.publicdomainpictures.net/pictures/10000/velka/1-1210009435EGmE.jpg",
-    "description": "This is an awesome book!",
-    "price": "19"
-  },
-  {
-    "id": "153076",
-    "title": "First Book",
-    "imageUrl": "https://www.publicdomainpictures.net/pictures/10000/velka/1-1210009435EGmE.jpg",
-    "description": "This is the good!",
-    "price": "12"
-  }
-]
+[{"id":"123245","title":"A Book","imageUrl":"https://cdn.pixabay.com/photo/2016/03/31/20/51/book-1296045_960_720.png","description":"This is an awesome book!","price":"19"},{"id":"153076","title":"First Book","imageUrl":"https://cdn.pixabay.com/photo/2016/03/31/20/51/book-1296045_960_720.png","description":"This is the good!","price":"12"},{"id":"0.8357094194452368","title":"aqgwewg","imageUrl":"https://cdn.pixabay.com/photo/2016/03/31/20/51/book-1296045_960_720.png","description":"sưqgwhgqg","price":"35.11"},{"id":"0.8904011212036107","title":"ụeqghqi","imageUrl":"https://cdn.pixabay.com/photo/2016/03/31/20/51/book-1296045_960_720.png","description":"Trang và trang cá nhân của bạn","price":"35.99"}]
