@@ -21,10 +21,23 @@ class Main extends Component {
       });
   }
 
+  addToCart(e) {
+    e.preventDefault();
+    let productId = e.target.productId.value;
+    axios
+      .post("http://localhost:5000/cart", { productId: productId })
+      .then((res) => {
+        alert("Add to cart successfully!");
+        window.location.href = "http://localhost:3000/";
+        return res.data;
+      })
+      .catch((err) => console.log(err));
+  }
+
   render() {
     const productsList = this.state.products.map((product) => {
       return (
-        <article class="card product-item">
+        <article class="card product-item" key={product.id}>
           <header class="card__header">
             <h1 class="product__title"></h1>
           </header>
@@ -34,6 +47,22 @@ class Main extends Component {
           <div class="card__content">
             <h2 class="product__price">{product.price}$</h2>
             <p class="product__description">{product.description}</p>
+          </div>
+          <div class="card__actions">
+            <a href="/products/<%= product.id %>" class="btn">
+              Details
+            </a>
+            <form type="submit" onSubmit={this.addToCart}>
+              <button class="btn" type="submit">
+                Add to Cart
+              </button>
+              <input
+                type="hidden"
+                name="productId"
+                id="productId"
+                value={product.id}
+              />
+            </form>
           </div>
         </article>
       );
