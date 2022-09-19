@@ -39,7 +39,7 @@ class Main extends Component {
       return (
         <article class="card product-item" key={product.id}>
           <header class="card__header">
-            <h1 class="product__title"></h1>
+            <h1 class="product__title">{product.title}</h1>
           </header>
           <div class="card__image">
             <img src={product.imageUrl} alt={product.title} />

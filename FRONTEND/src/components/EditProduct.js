@@ -11,12 +11,40 @@ function EditProduct() {
       .then((res) => setProduct(res.data))
       .catch((err) => console.log(err));
   }, [params.productId]);
+
+  const postEditProduct = (e) => {
+    e.preventDefault();
+    const updateProduct = {
+      productId: e.target.productId.value,
+      title: e.target.title.value,
+      imageUrl: e.target.imageUrl.value,
+      description: e.target.description.value,
+      price: e.target.price.value,
+    };
+
+    axios
+      .post("http://localhost:5000/admin/edit-product", updateProduct, {
+        headers: { "Content-Type": "application/json" },
+      })
+      .then((res) => {
+        alert("Edit product success!");
+        window.location.href = "http://localhost:3000/admin/products";
+        return res.data;
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <main>
-      <form class="product-form" type="submit">
+      <form class="product-form" type="submit" onSubmit={postEditProduct}>
         <div class="form-control">
           <label for="title">Title</label>
-          <input type="text" name="title" id="title" value={product.title} />
+          <input
+            type="text"
+            name="title"
+            id="title"
+            defaultValue={product.title}
+          />
         </div>
         <div class="form-control">
           <label for="imageUrl">Image URL</label>
@@ -24,7 +52,7 @@ function EditProduct() {
             type="text"
             name="imageUrl"
             id="imageUrl"
-            value={product.imageUrl}
+            defaultValue={product.imageUrl}
           />
         </div>
         <div class="form-control">
@@ -34,7 +62,7 @@ function EditProduct() {
             name="price"
             id="price"
             step="0.01"
-            value={product.price}
+            defaultValue={product.price}
           />
         </div>
         <div class="form-control">
@@ -43,10 +71,15 @@ function EditProduct() {
             name="description"
             id="description"
             rows="5"
-            value={product.description}
+            defaultValue={product.description}
           ></textarea>
         </div>
-        <input type="hidden" name="productId" />
+        <input
+          type="hidden"
+          name="productId"
+          id="productId"
+          value={product.id}
+        />
         <button class="btn" type="submit">
           Edit Product
         </button>
