@@ -3,6 +3,8 @@ import Navigation from "./components/Navigation";
 import AddProduct from "./components/AddProduct";
 import AdminProducts from "./components/AdminProducts";
 import EditProduct from "./components/EditProduct";
+import Cart from "./components/Cart";
+
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import "./CSS/forms.css";
@@ -21,6 +23,7 @@ function App() {
           path="/admin/edit-product/:productId"
           element={<EditProduct />}
         />
+        <Route exact path="/cart" element={<Cart />} />
       </Routes>
     </div>
   );

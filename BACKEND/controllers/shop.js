@@ -10,14 +10,13 @@ exports.getCart = (req, res, next) => {
           (prod) => prod.id === product.id
         );
         if (cartProductData) {
-          cartProducts.push({ productData: product, qty: cartProductData.qty });
+          cartProducts.push({
+            productData: product,
+            qty: cartProductData.qty,
+          });
         }
       }
-      res.render("shop/cart", {
-        path: "/cart",
-        pageTitle: "Your Cart",
-        products: cartProducts,
-      });
+      res.send(cartProducts);
     });
   });
 };
