@@ -15,3 +15,10 @@ exports.postAddProduct = (req, res, next) => {
   product.save();
   res.json(req.body);
 };
+
+exports.getEditProduct = (req, res, next) => {
+  const prodId = req.params;
+  Product.findById(prodId, (product) => {
+    res.send(product);
+  });
+};
