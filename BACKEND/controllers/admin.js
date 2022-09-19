@@ -17,7 +17,7 @@ exports.postAddProduct = (req, res, next) => {
 };
 
 exports.getEditProduct = (req, res, next) => {
-  const prodId = req.params;
+  const prodId = req.params.productId;
   Product.findById(prodId, (product) => {
     res.send(product);
   });
