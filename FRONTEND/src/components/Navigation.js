@@ -11,7 +11,9 @@ class Navigation extends Component {
         <div className="main-header__nav">
           <div className="main-header__item-list">
             <div className="main-header__item">
-              <NavLink to="shop">Shop</NavLink>
+              <NavLink to="/" end>
+                Shop
+              </NavLink>
             </div>
             <div className="main-header__item">
               <NavLink to="products">Products</NavLink>
