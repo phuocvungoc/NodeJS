@@ -28,3 +28,11 @@ exports.postCart = (req, res, next) => {
   });
   res.json(req.body);
 };
+
+exports.postCartDeleteProduct = (req, res, next) => {
+  const prodId = req.body.prodId;
+  Product.findById(prodId, (product) => {
+    Cart.deleteProduct(prodId, product.price);
+    res.json(res.body);
+  });
+};
