@@ -52,7 +52,11 @@ class Main extends Component {
             <a href="/products/<%= product.id %>" class="btn">
               Details
             </a>
-            <form type="submit" onSubmit={this.addToCart}>
+            <form
+              type="submit"
+              onSubmit={this.addToCart}
+              className="form_add_cart"
+            >
               <button class="btn" type="submit">
                 Add to Cart
               </button>

@@ -15,7 +15,7 @@ main {
   margin: auto;
 }
 
-form {
+.form_add_cart {
   display: inline;
 }
 

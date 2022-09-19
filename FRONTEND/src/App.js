@@ -1,7 +1,7 @@
 import Main from "./components/Main";
 import Navigation from "./components/Navigation";
 import AddProduct from "./components/AddProduct";
-import { Switch, Route, withRouter } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import "./CSS/forms.css";
 import "./CSS/main.css";
@@ -11,12 +11,12 @@ function App() {
   return (
     <div className="App">
       <Navigation />
-      <Switch>
-        <Route exact path="/" component={() => <Main />} />
-        <Route path="/add-product" component={() => <AddProduct />} />
-      </Switch>
+      <Routes>
+        <Route exact path="/" element={<Main />} />
+        <Route exact path="/add-product" element={<AddProduct />} />
+      </Routes>
     </div>
   );
 }
 
-export default withRouter(App);
+export default App;
