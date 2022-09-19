@@ -21,18 +21,24 @@ class AdminProducts extends Component {
       });
   }
 
-  // adminEditProduct(e) {
-  //   e.preventDefault();
-  //   let productId = e.target.productId.value;
-  //   axios
-  //     .post("http://localhost:5000/admin/", { productId: productId })
-  //     .then((res) => {
-  //       alert("Add to cart successfully!");
-  //       window.location.href = "http://localhost:3000/";
-  //       return res.data;
-  //     })
-  //     .catch((err) => console.log(err));
-  // }
+  deleteAdminProduct(e) {
+    e.preventDefault();
+    const prodId = e.target.productId.value;
+    axios
+      .post(
+        "http://localhost:5000/admin/delete-product",
+        { prodId: prodId },
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      )
+      .then((res) => {
+        alert("Delete product success!");
+        window.location.href = "http://localhost:3000/";
+        return res.data;
+      })
+      .catch((err) => console.log(err));
+  }
 
   render() {
     const productsList = this.state.products.map((product) => {
@@ -53,11 +59,16 @@ class AdminProducts extends Component {
               Edit
             </a>
             <form
-              action="/admin/delete-product"
-              method="POST"
               className="form_add_cart"
+              type="submit"
+              onSubmit={this.deleteAdminProduct}
             >
-              <input type="hidden" value="<%= product.id %>" name="productId" />
+              <input
+                type="hidden"
+                value={product.id}
+                name="productId"
+                id="productId"
+              />
               <button class="btn" type="submit">
                 Delete
               </button>

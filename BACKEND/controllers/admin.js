@@ -39,3 +39,9 @@ exports.postEditProduct = (req, res, next) => {
   updatedProduct.save();
   res.send(req.body);
 };
+
+exports.postDeleteProduct = (req, res, next) => {
+  const prodId = req.body.prodId;
+  Product.deleteById(prodId);
+  res.send(req.body);
+};
