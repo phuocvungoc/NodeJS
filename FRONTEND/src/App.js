@@ -4,6 +4,7 @@ import AddProduct from "./components/AddProduct";
 import AdminProducts from "./components/AdminProducts";
 import EditProduct from "./components/EditProduct";
 import Cart from "./components/Cart";
+import Detail from "./components/ProductDetail";
 
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
@@ -18,6 +19,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Main />} />
         <Route exact path="/add-product" element={<AddProduct />} />
+        <Route exact path="/detail/:productId" element={<Detail />} />
         <Route exact path="/admin/products" element={<AdminProducts />} />
         <Route
           path="/admin/edit-product/:productId"

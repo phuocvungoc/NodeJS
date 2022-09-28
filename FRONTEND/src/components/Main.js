@@ -49,7 +49,7 @@ class Main extends Component {
             <p class="product__description">{product.description}</p>
           </div>
           <div class="card__actions">
-            <a href="/products/<%= product.id %>" class="btn">
+            <a href={`/detail/${product.id}`} class="btn">
               Details
             </a>
             <form

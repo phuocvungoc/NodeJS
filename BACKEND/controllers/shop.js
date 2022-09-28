@@ -36,3 +36,12 @@ exports.postCartDeleteProduct = (req, res, next) => {
     res.json(res.body);
   });
 };
+
+exports.getProduct = (req, res, next) => {
+  const prodId = req.params.productId;
+  Product.findById(prodId)
+    .then(([product]) => {
+      res.send(product[0]);
+    })
+    .catch((err) => console.log(err));
+};
