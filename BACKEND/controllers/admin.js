@@ -1,9 +1,11 @@
 const Product = require("../models/product");
 
 exports.getProducts = (req, res, next) => {
-  Product.fetchAll((products) => {
-    res.send(products);
-  });
+  Product.fetchAll()
+    .then(([rows, fieldData]) => {
+      res.send(rows);
+    })
+    .catch((err) => console.log(err));
 };
 
 exports.postAddProduct = (req, res, next) => {
