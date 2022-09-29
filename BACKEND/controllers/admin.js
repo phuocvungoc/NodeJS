@@ -1,9 +1,9 @@
 const Product = require("../models/product");
 
 exports.getProducts = (req, res, next) => {
-  Product.fetchAll()
-    .then(([rows, fieldData]) => {
-      res.send(rows);
+  Product.findAll()
+    .then((product) => {
+      res.send(product);
     })
     .catch((err) => console.log(err));
 };
@@ -13,10 +13,15 @@ exports.postAddProduct = (req, res, next) => {
   const imageUrl = req.body.imageUrl;
   const price = req.body.price;
   const description = req.body.description;
-  const product = new Product(null, title, imageUrl, description, price);
-  product
-    .save()
-    .then(() => res.json(req.body))
+  Product.create({
+    title: title,
+    imageUrl: imageUrl,
+    price: price,
+    description: description,
+  })
+    .then((result) => {
+      res.json(result);
+    })
     .catch((err) => console.log(err));
 };
 
@@ -44,8 +49,9 @@ exports.postEditProduct = (req, res, next) => {
   res.send(req.body);
 };
 
-exports.postDeleteProduct = (req, res, next) => {
-  const prodId = req.body.prodId;
-  Product.deleteById(prodId);
-  res.send(req.body);
-};
+// exports.postDeleteProduct = (req, res, next) => {
+//   const prodId = req.body.prodId;
+//   Product.deleteByPk(prodId)
+//     .then((result) => res.json(result))
+//     .catch((err) => console.log(err));
+// };

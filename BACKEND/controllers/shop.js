@@ -39,9 +39,9 @@ exports.postCartDeleteProduct = (req, res, next) => {
 
 exports.getProduct = (req, res, next) => {
   const prodId = req.params.productId;
-  Product.findById(prodId)
-    .then(([product]) => {
-      res.send(product[0]);
+  Product.findByPk(prodId)
+    .then((product) => {
+      res.send(product);
     })
     .catch((err) => console.log(err));
 };

@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const db = require("./util/database");
+const sequelize = require("./util/database");
 
 const app = express();
 const adminRoutes = require("./routes/admin");
@@ -14,4 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/admin", adminRoutes);
 app.use(shopRoutes);
 
-app.listen(5000);
+sequelize
+  .sync()
+  .then((result) => app.listen(5000))
+  .catch((err) => console.log(err));
