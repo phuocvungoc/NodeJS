@@ -52,9 +52,17 @@ exports.postEditProduct = (req, res, next) => {
     .catch((err) => console.log(err));
 };
 
-// exports.postDeleteProduct = (req, res, next) => {
-//   const prodId = req.body.prodId;
-//   Product.deleteByPk(prodId)
-//     .then((result) => res.json(result))
-//     .catch((err) => console.log(err));
-// };
+exports.postDeleteProduct = (req, res, next) => {
+  const prodId = req.body.prodId;
+  Product.destroy({ where: { id: prodId } })
+    .then((result) => res.json(result))
+    .catch((err) => console.log(err));
+  // Product.findByPk(prodId)
+  //   .then((product) => {
+  //     product.destroy();
+  //   })
+  //   .then((result) => {
+  //     res.send(result);
+  //   })
+  //   .catch((err) => console.log(err));
+};
