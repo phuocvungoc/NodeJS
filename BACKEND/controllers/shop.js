@@ -39,6 +39,9 @@ exports.postCartDeleteProduct = (req, res, next) => {
 
 exports.getProduct = (req, res, next) => {
   const prodId = req.params.productId;
+  // Product.findAll({ where: { id: prodId } })
+  //   .then((products) => res.send(products[0]))
+  //   .catch((err) => console.log(err));
   Product.findByPk(prodId)
     .then((product) => {
       res.send(product);
