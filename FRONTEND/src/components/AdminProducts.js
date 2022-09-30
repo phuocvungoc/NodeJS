@@ -43,7 +43,7 @@ class AdminProducts extends Component {
   render() {
     const productsList = this.state.products.map((product) => {
       return (
-        <article className="card product-item" key={product.id}>
+        <article className="card product-item" key={product._id}>
           <header className="card__header">
             <h1 className="product__title">{product.title}</h1>
           </header>
@@ -55,7 +55,7 @@ class AdminProducts extends Component {
             <p className="product__description">{product.description}</p>
           </div>
           <div className="card__actions">
-            <a href={"/admin/edit-product/" + product.id} className="btn">
+            <a href={"/admin/edit-product/" + product._id} className="btn">
               Edit
             </a>
             <form
@@ -65,7 +65,7 @@ class AdminProducts extends Component {
             >
               <input
                 type="hidden"
-                value={product.id}
+                value={product._id}
                 name="productId"
                 id="productId"
               />

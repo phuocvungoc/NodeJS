@@ -22,38 +22,33 @@ exports.postAddProduct = (req, res, next) => {
     .catch((err) => console.log(err));
 };
 
-// exports.getEditProduct = (req, res, next) => {
-//   const prodId = req.params.productId;
-//   // Product.findByPk(prodId)
-//   //   .then((product) => {
-//   //     res.send(product);
-//   //   })
-//   //   .catch((err) => console.log(err));
-//   req.user
-//     .getProducts({ where: { id: prodId } })
-//     .then((products) => {
-//       res.send(products[0]);
-//     })
-//     .catch((err) => console.log(err));
-// };
+exports.getEditProduct = (req, res, next) => {
+  const prodId = req.params.productId;
+  Product.findById(prodId)
+    .then((product) => {
+      res.send(product);
+    })
+    .catch((err) => console.log(err));
+};
 
-// exports.postEditProduct = (req, res, next) => {
-//   const prodId = req.body.productId;
-//   const updatedTitle = req.body.title;
-//   const updatedPrice = req.body.price;
-//   const updatedImageUrl = req.body.imageUrl;
-//   const updatedDesc = req.body.description;
-//   Product.findByPk(prodId)
-//     .then((product) => {
-//       product.title = updatedTitle;
-//       product.price = updatedPrice;
-//       product.imageUrl = updatedImageUrl;
-//       product.description = updatedDesc;
-//       return product.save();
-//     })
-//     .then((result) => res.send(result))
-//     .catch((err) => console.log(err));
-// };
+exports.postEditProduct = (req, res, next) => {
+  const prodId = req.body.productId;
+  const updatedTitle = req.body.title;
+  const updatedPrice = req.body.price;
+  const updatedImageUrl = req.body.imageUrl;
+  const updatedDesc = req.body.description;
+  const product = new Product(
+    updatedTitle,
+    updatedPrice,
+    updatedDesc,
+    updatedImageUrl,
+    prodId
+  );
+  product
+    .save()
+    .then((result) => res.send(result))
+    .catch((err) => console.log(err));
+};
 
 // exports.postDeleteProduct = (req, res, next) => {
 //   const prodId = req.body.prodId;

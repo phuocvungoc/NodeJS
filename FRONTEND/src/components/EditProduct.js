@@ -78,7 +78,7 @@ function EditProduct() {
           type="hidden"
           name="productId"
           id="productId"
-          value={product.id}
+          value={product._id}
         />
         <button className="btn" type="submit">
           Edit Product
