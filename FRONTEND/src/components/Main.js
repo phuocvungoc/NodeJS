@@ -37,19 +37,19 @@ class Main extends Component {
   render() {
     const productsList = this.state.products.map((product) => {
       return (
-        <article class="card product-item" key={product.id}>
-          <header class="card__header">
-            <h1 class="product__title">{product.title}</h1>
+        <article className="card product-item" key={product.id}>
+          <header className="card__header">
+            <h1 className="product__title">{product.title}</h1>
           </header>
-          <div class="card__image">
+          <div className="card__image">
             <img src={product.imageUrl} alt={product.title} />
           </div>
-          <div class="card__content">
-            <h2 class="product__price">{product.price}$</h2>
-            <p class="product__description">{product.description}</p>
+          <div className="card__content">
+            <h2 className="product__price">{product.price}$</h2>
+            <p className="product__description">{product.description}</p>
           </div>
-          <div class="card__actions">
-            <a href={`/detail/${product.id}`} class="btn">
+          <div className="card__actions">
+            <a href={`/detail/${product.id}`} className="btn">
               Details
             </a>
             <form
@@ -57,7 +57,7 @@ class Main extends Component {
               onSubmit={this.addToCart}
               className="form_add_cart"
             >
-              <button class="btn" type="submit">
+              <button className="btn" type="submit">
                 Add to Cart
               </button>
               <input
@@ -71,7 +71,7 @@ class Main extends Component {
         </article>
       );
     });
-    return <div class="grid">{productsList}</div>;
+    return <div className="grid">{productsList}</div>;
   }
 }
 

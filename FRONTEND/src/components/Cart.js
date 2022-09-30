@@ -21,6 +21,17 @@ class Cart extends Component {
       });
   }
 
+  postOrder() {
+    axios
+      .post("http://localhost:5000/create-order")
+      .then((res) => {
+        alert("Order success!");
+        window.location.href = "http://localhost:3000/";
+        return res.data;
+      })
+      .catch((err) => console.log(err));
+  }
+
   deleteCart(e) {
     e.preventDefault();
     const prodId = e.target.productId.value;
@@ -46,22 +57,28 @@ class Cart extends Component {
         return (
           <div>
             <h2>
-              {cart.productData.title}({cart.qty})
+              {cart.title}({cart.cartItem.quantity})
             </h2>
             <form type="submit" onSubmit={this.deleteCart}>
-              <input
-                type="hidden"
-                value={cart.productData.id}
-                name="productId"
-              />
-              <button class="btn" type="submit">
+              <input type="hidden" value={cart.id} name="productId" />
+              <button className="btn" type="submit">
                 Delete
               </button>
             </form>
           </div>
         );
       });
-      return <div>{listCart}</div>;
+      return (
+        <main className="centered">
+          <div>{listCart}</div>
+          <hr />
+          <form type="submit" onSubmit={this.postOrder}>
+            <button type="submit" className="btn">
+              Order Now!
+            </button>
+          </form>
+        </main>
+      );
     } else {
       return (
         <div>

@@ -36,8 +36,8 @@ function EditProduct() {
 
   return (
     <main>
-      <form class="product-form" type="submit" onSubmit={postEditProduct}>
-        <div class="form-control">
+      <form className="product-form" type="submit" onSubmit={postEditProduct}>
+        <div className="form-control">
           <label for="title">Title</label>
           <input
             type="text"
@@ -46,7 +46,7 @@ function EditProduct() {
             defaultValue={product.title}
           />
         </div>
-        <div class="form-control">
+        <div className="form-control">
           <label for="imageUrl">Image URL</label>
           <input
             type="text"
@@ -55,7 +55,7 @@ function EditProduct() {
             defaultValue={product.imageUrl}
           />
         </div>
-        <div class="form-control">
+        <div className="form-control">
           <label for="price">Price</label>
           <input
             type="number"
@@ -65,7 +65,7 @@ function EditProduct() {
             defaultValue={product.price}
           />
         </div>
-        <div class="form-control">
+        <div className="form-control">
           <label for="description">Description</label>
           <textarea
             name="description"
@@ -80,7 +80,7 @@ function EditProduct() {
           id="productId"
           value={product.id}
         />
-        <button class="btn" type="submit">
+        <button className="btn" type="submit">
           Edit Product
         </button>
       </form>

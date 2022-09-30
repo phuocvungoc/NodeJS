@@ -5,6 +5,7 @@ import AdminProducts from "./components/AdminProducts";
 import EditProduct from "./components/EditProduct";
 import Cart from "./components/Cart";
 import Detail from "./components/ProductDetail";
+import Orders from "./components/Orders";
 
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
@@ -26,6 +27,7 @@ function App() {
           element={<EditProduct />}
         />
         <Route exact path="/cart" element={<Cart />} />
+        <Route exact path="/orders" element={<Orders />} />
       </Routes>
     </div>
   );

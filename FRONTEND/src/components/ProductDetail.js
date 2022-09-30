@@ -38,7 +38,7 @@ function Detail() {
       <h2> {product.price} </h2>
       <p> {product.description}</p>
       <form type="submit" onSubmit={addToCart} className="form_add_cart">
-        <button class="btn" type="submit">
+        <button className="btn" type="submit">
           Add to Cart
         </button>
         <input

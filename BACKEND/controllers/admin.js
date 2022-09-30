@@ -1,7 +1,9 @@
 const Product = require("../models/product");
 
 exports.getProducts = (req, res, next) => {
-  Product.findAll()
+  // Product.findAll()
+  req.user
+    .getProducts()
     .then((product) => {
       res.send(product);
     })
@@ -13,12 +15,21 @@ exports.postAddProduct = (req, res, next) => {
   const imageUrl = req.body.imageUrl;
   const price = req.body.price;
   const description = req.body.description;
-  Product.create({
-    title: title,
-    imageUrl: imageUrl,
-    price: price,
-    description: description,
-  })
+
+  // Product.create({
+  //   title: title,
+  //   imageUrl: imageUrl,
+  //   price: price,
+  //   description: description,
+  //   userId: req.user.id,
+  // })
+  req.user
+    .createProduct({
+      title: title,
+      imageUrl: imageUrl,
+      price: price,
+      description: description,
+    })
     .then((result) => {
       res.json(result);
     })
@@ -27,9 +38,15 @@ exports.postAddProduct = (req, res, next) => {
 
 exports.getEditProduct = (req, res, next) => {
   const prodId = req.params.productId;
-  Product.findByPk(prodId)
-    .then((product) => {
-      res.send(product);
+  // Product.findByPk(prodId)
+  //   .then((product) => {
+  //     res.send(product);
+  //   })
+  //   .catch((err) => console.log(err));
+  req.user
+    .getProducts({ where: { id: prodId } })
+    .then((products) => {
+      res.send(products[0]);
     })
     .catch((err) => console.log(err));
 };
