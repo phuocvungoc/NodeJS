@@ -45,7 +45,7 @@ function Detail() {
           type="hidden"
           name="productId"
           id="productId"
-          value={product.id}
+          value={product._id}
         />
       </form>
     </main>

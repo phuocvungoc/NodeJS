@@ -67,7 +67,7 @@ exports.getProduct = (req, res, next) => {
   // Product.findAll({ where: { id: prodId } })
   //   .then((products) => res.send(products[0]))
   //   .catch((err) => console.log(err));
-  Product.findByPk(prodId)
+  Product.findById(prodId)
     .then((product) => {
       res.send(product);
     })

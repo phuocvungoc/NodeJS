@@ -37,7 +37,7 @@ class Main extends Component {
   render() {
     const productsList = this.state.products.map((product) => {
       return (
-        <article className="card product-item" key={product.id}>
+        <article className="card product-item" key={product._id}>
           <header className="card__header">
             <h1 className="product__title">{product.title}</h1>
           </header>
@@ -49,7 +49,7 @@ class Main extends Component {
             <p className="product__description">{product.description}</p>
           </div>
           <div className="card__actions">
-            <a href={`/detail/${product.id}`} className="btn">
+            <a href={`/detail/${product._id}`} className="btn">
               Details
             </a>
             <form
@@ -64,7 +64,7 @@ class Main extends Component {
                 type="hidden"
                 name="productId"
                 id="productId"
-                value={product.id}
+                value={product._id}
               />
             </form>
           </div>
