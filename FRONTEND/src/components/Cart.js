@@ -57,10 +57,14 @@ class Cart extends Component {
         return (
           <div>
             <h2>
-              {cart.title}({cart.quantity})
+              {cart.productId.title}({cart.quantity})
             </h2>
             <form type="submit" onSubmit={this.deleteCart}>
-              <input type="hidden" value={cart._id} name="productId" />
+              <input
+                type="hidden"
+                value={cart.productId._id}
+                name="productId"
+              />
               <button className="btn" type="submit">
                 Delete
               </button>

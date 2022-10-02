@@ -27,10 +27,10 @@ class Orders extends Component {
         return (
           <div key={order._id}>
             <h1>Order- #{order._id}</h1>
-            {order.items.map((item) => {
+            {order.products.map((item) => {
               return (
                 <h2 key={item._id}>
-                  {item.title}({item.quantity})
+                  {item.product.title}({item.quantity})
                 </h2>
               );
             })}
