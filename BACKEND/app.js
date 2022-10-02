@@ -13,9 +13,9 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
-  User.findById("6336a8c8756946f5de449193")
+  User.findById("6338f1761eea501e8b755d9a")
     .then((user) => {
-      req.user = user;
+      req.user = new User(user.name, user.email, user.cart, user._id);
       next();
     })
     .catch((err) => console.log(err));

@@ -26,7 +26,7 @@ class Cart extends Component {
       .post("http://localhost:5000/create-order")
       .then((res) => {
         alert("Order success!");
-        window.location.href = "http://localhost:3000/";
+        window.location.href = "http://localhost:3000/orders";
         return res.data;
       })
       .catch((err) => console.log(err));
@@ -45,7 +45,7 @@ class Cart extends Component {
       )
       .then((res) => {
         alert("Delete product in cart success!");
-        window.location.href = "http://localhost:3000/";
+        window.location.href = "http://localhost:3000/cart";
         return res.data;
       })
       .catch((err) => console.log(err));
@@ -57,10 +57,10 @@ class Cart extends Component {
         return (
           <div>
             <h2>
-              {cart.title}({cart.cartItem.quantity})
+              {cart.title}({cart.quantity})
             </h2>
             <form type="submit" onSubmit={this.deleteCart}>
-              <input type="hidden" value={cart.id} name="productId" />
+              <input type="hidden" value={cart._id} name="productId" />
               <button className="btn" type="submit">
                 Delete
               </button>

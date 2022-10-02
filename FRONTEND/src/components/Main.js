@@ -28,7 +28,7 @@ class Main extends Component {
       .post("http://localhost:5000/cart", { productId: productId })
       .then((res) => {
         alert("Add to cart successfully!");
-        window.location.href = "http://localhost:3000/";
+        window.location.href = "http://localhost:3000/cart";
         return res.data;
       })
       .catch((err) => console.log(err));
