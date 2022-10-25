@@ -11,7 +11,7 @@ class Cart extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/cart")
+      .get("api/shop/cart")
       .then((res) => {
         const cart = res.data;
         this.setState({ cart });
@@ -23,7 +23,7 @@ class Cart extends Component {
 
   postOrder() {
     axios
-      .post("http://localhost:5000/create-order")
+      .post("/api/shop/create-order")
       .then((res) => {
         alert("Order success!");
         window.location.href = "http://localhost:3000/orders";
@@ -37,7 +37,7 @@ class Cart extends Component {
     const prodId = e.target.productId.value;
     axios
       .post(
-        "http://localhost:5000/cart-delete-item",
+        "/cart-delete-item",
         { prodId: prodId },
         {
           headers: { "Content-Type": "application/json" },

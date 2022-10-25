@@ -11,7 +11,7 @@ class Main extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/admin/products")
+      .get("/api/admin/products")
       .then((res) => {
         const products = res.data;
         this.setState({ products });
@@ -25,7 +25,7 @@ class Main extends Component {
     e.preventDefault();
     let productId = e.target.productId.value;
     axios
-      .post("http://localhost:5000/cart", { productId: productId })
+      .post("/api/shop/cart", { productId: productId })
       .then((res) => {
         alert("Add to cart successfully!");
         window.location.href = "http://localhost:3000/cart";

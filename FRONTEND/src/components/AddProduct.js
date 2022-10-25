@@ -15,7 +15,7 @@ class AddProduct extends Component {
       price: e.target.price.value,
     };
     axios
-      .post("http://localhost:5000/admin/add-product", newProduct, {
+      .post("/api/admin/add-product", newProduct, {
         headers: { "Content-Type": "application/json" },
       })
       .then((res) => {

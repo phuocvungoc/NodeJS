@@ -11,7 +11,7 @@ class AdminProducts extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/admin/products")
+      .get("/api/admin/products")
       .then((res) => {
         const products = res.data;
         this.setState({ products });
@@ -26,7 +26,7 @@ class AdminProducts extends Component {
     const prodId = e.target.productId.value;
     axios
       .post(
-        "http://localhost:5000/admin/delete-product",
+        "/api/admin/delete-product",
         { prodId: prodId },
         {
           headers: { "Content-Type": "application/json" },

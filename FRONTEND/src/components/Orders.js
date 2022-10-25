@@ -11,7 +11,7 @@ class Orders extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/orders")
+      .get("/api/shop/orders")
       .then((res) => {
         const orders = res.data;
         this.setState({ orders });

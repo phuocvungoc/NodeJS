@@ -7,7 +7,7 @@ function EditProduct() {
   const params = useParams();
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/admin/edit-product/${params.productId}`)
+      .get(`/api/admin/edit-product/${params.productId}`)
       .then((res) => setProduct(res.data))
       .catch((err) => console.log(err));
   }, [params.productId]);
@@ -23,7 +23,7 @@ function EditProduct() {
     };
 
     axios
-      .post("http://localhost:5000/admin/edit-product", updateProduct, {
+      .post("/api/admin/edit-product", updateProduct, {
         headers: { "Content-Type": "application/json" },
       })
       .then((res) => {

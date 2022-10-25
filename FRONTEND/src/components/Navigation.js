@@ -10,7 +10,7 @@ const myCookie = cookies.get("isLoggedIn");
 const Navigation = () => {
   const postLogout = () => {
     axios
-      .post("/logout", { withCredentials: true })
+      .post("/api/auth/logout", { withCredentials: true })
       .then((res) => {
         window.location.href = "http://localhost:3000/";
       })
@@ -55,9 +55,14 @@ const Navigation = () => {
               </a>
             </div>
           ) : (
-            <div className="main-header__item">
-              <NavLink to="login">Login</NavLink>
-            </div>
+            <>
+              <div className="main-header__item">
+                <NavLink to="login">Login</NavLink>
+              </div>
+              <div className="main-header__item">
+                <NavLink to="signup">SignUp</NavLink>
+              </div>
+            </>
           )}
         </div>
       </div>

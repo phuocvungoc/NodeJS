@@ -7,6 +7,7 @@ import Cart from "./components/Cart";
 import Detail from "./components/ProductDetail";
 import Orders from "./components/Orders";
 import Login from "./page/login";
+import SignUp from "./page/signup";
 
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Main />} />
         <Route exact path="/login" element={<Login />} />
+        <Route exact path="/signup" element={<SignUp />} />
         <Route exact path="/add-product" element={<AddProduct />} />
         <Route exact path="/detail/:productId" element={<Detail />} />
         <Route exact path="/admin/products" element={<AdminProducts />} />

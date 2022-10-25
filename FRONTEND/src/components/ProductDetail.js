@@ -7,7 +7,7 @@ function Detail() {
   const params = useParams();
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/detail/${params.productId}`)
+      .get(`/api/shop/detail/${params.productId}`)
       .then((res) => setProduct(res.data))
       .catch((err) => console.log(err));
   }, [params.productId]);
@@ -16,7 +16,7 @@ function Detail() {
     e.preventDefault();
     let productId = e.target.productId.value;
     axios
-      .post("http://localhost:5000/cart", { productId: productId })
+      .post("/api/shop/cart", { productId: productId })
       .then((res) => {
         alert("Add to cart successfully!");
         window.location.href = "http://localhost:3000/";

@@ -1,15 +1,15 @@
 const Product = require("../models/product");
 const Order = require("../models/order");
 
-// exports.getCart = async (req, res, next) => {
-//   await req.user
-//     .populate("cart.items.productId")
-//     .then((user) => {
-//       const products = user.cart.items;
-//       res.send(products);
-//     })
-//     .catch((err) => console.log(err));
-// };
+exports.getCart = async (req, res, next) => {
+  await req.user
+    .populate("cart.items.productId")
+    .then((user) => {
+      const products = user.cart.items;
+      res.send(products);
+    })
+    .catch((err) => console.log(err));
+};
 
 exports.postCart = (req, res, next) => {
   const prodId = req.body.productId;
@@ -49,7 +49,7 @@ exports.postOrder = async (req, res, next) => {
         return { quantity: i.quantity, product: { ...i.productId._doc } };
       });
       const order = new Order({
-        user: { name: req.user.name, userId: req.user },
+        user: { email: req.user.email, userId: req.user },
         products: products,
       });
       return order.save();

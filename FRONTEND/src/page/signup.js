@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-const Login = () => {
+const SignUp = () => {
   const postLogin = (e) => {
     e.preventDefault();
     const user = {
@@ -9,11 +9,11 @@ const Login = () => {
       password: e.target.password.value,
     };
     axios
-      .post("http://localhost:3000/api/auth/login", user, {
+      .post("http://localhost:3000/api/auth/signup", user, {
         withCredentials: true,
       })
       .then((res) => {
-        window.location.href = "http://localhost:3000/";
+        window.location.href = "http://localhost:3000/login";
       })
       .catch((err) => console.log(err));
   };
@@ -29,12 +29,16 @@ const Login = () => {
           <label htmlFor="password">Password</label>
           <input type="password" name="password" id="password" />
         </div>
+        <div className="form-control">
+          <label htmlFor="confirmPassword">Confirm Password</label>
+          <input type="password" name="confirmPassword" id="confirmPassword" />
+        </div>
         <button className="btn" type="submit">
-          Login
+          SignUp
         </button>
       </form>
     </main>
   );
 };
 
-export default Login;
+export default SignUp;

@@ -35,7 +35,10 @@ app.use(
 );
 
 app.use((req, res, next) => {
-  User.findById("63395b178d3543dcd28ac586")
+  if (!req.session.user) {
+    return next();
+  }
+  User.findById(req.session.user._id)
     .then((user) => {
       req.user = user;
       next();
@@ -43,9 +46,9 @@ app.use((req, res, next) => {
     .catch((err) => console.log(err));
 });
 
-app.use("/admin", adminRoutes);
-app.use(shopRoutes);
-app.use(authRoutes);
+app.use("/api/admin", adminRoutes);
+app.use("/api/shop", shopRoutes);
+app.use("/api/auth", authRoutes);
 
 app.use(errorController.get404);
 
