@@ -12,6 +12,7 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  password: { type: String, required: true },
   cart: {
     items: [
       {

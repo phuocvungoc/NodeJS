@@ -6,6 +6,7 @@ import EditProduct from "./components/EditProduct";
 import Cart from "./components/Cart";
 import Detail from "./components/ProductDetail";
 import Orders from "./components/Orders";
+import Login from "./page/login";
 
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
@@ -19,6 +20,7 @@ function App() {
       <Navigation />
       <Routes>
         <Route exact path="/" element={<Main />} />
+        <Route exact path="/login" element={<Login />} />
         <Route exact path="/add-product" element={<AddProduct />} />
         <Route exact path="/detail/:productId" element={<Detail />} />
         <Route exact path="/admin/products" element={<AdminProducts />} />
