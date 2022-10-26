@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
+// const csrf = require("csurf");
 
 const app = express();
 
@@ -19,6 +20,7 @@ const store = new MongoDBStore({
   uri: MONGODB_URI,
   collection: "sessions",
 });
+// const csrfProtection = csrf();
 
 app.use(express.json()); // for parsing application/json
 app.use(cors());
@@ -33,6 +35,7 @@ app.use(
     store: store,
   })
 );
+// app.use(csrfProtection);
 
 app.use((req, res, next) => {
   if (!req.session.user) {
