@@ -1,5 +1,6 @@
 const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
+const { validationResult } = require("express-validator");
 
 const User = require("../models/user");
 
@@ -14,35 +15,30 @@ const transporter = nodemailer.createTransport({
 exports.postSignup = (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
-  // const confirmPassword = req.body.confirmPassword;
-  User.findOne({ email: email })
-    .then((userDoc) => {
-      if (userDoc) {
-        return res.status(500).json("Email already exists");
-      }
+  const errors = validationResult(req);
 
-      return bcrypt
-        .hash(password, 12)
-        .then((hashedPassword) => {
-          const user = new User({
-            email: email,
-            password: hashedPassword,
-            cart: { items: [] },
-          });
-          return user.save();
-        })
-        .then((result) => {
-          res.status(200).json("Sign up successfully");
-          return transporter.sendMail({
-            from: "phuocdaika3334@gmail.com",
-            to: email,
-            subject: "Signup succeeded!",
-            html: "<h1>You successfully signed up</h1>",
-          });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+  if (!errors.isEmpty()) {
+    return res.status(422).json(errors.array()[0].msg);
+  }
+
+  bcrypt
+    .hash(password, 12)
+    .then((hashedPassword) => {
+      const user = new User({
+        email: email,
+        password: hashedPassword,
+        cart: { items: [] },
+      });
+      return user.save();
+    })
+    .then((result) => {
+      res.status(200).json("Sign up successfully");
+      return transporter.sendMail({
+        from: "phuocdaika3334@gmail.com",
+        to: email,
+        subject: "Signup succeeded!",
+        html: "<h1>You successfully signed up</h1>",
+      });
     })
     .catch((err) => {
       console.log(err);
@@ -52,6 +48,12 @@ exports.postSignup = (req, res, next) => {
 exports.postLogin = (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.status(422).json(errors.array()[0].msg);
+  }
+
   User.findOne({ email: email })
     .then((user) => {
       if (!user) {

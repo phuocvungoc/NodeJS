@@ -4,12 +4,13 @@ GET http://localhost:5000/detail/1
 POST http://localhost:5000/logout
 
 ###
-POST http://localhost:5000/login 
+POST http://localhost:5000/api/signup 
 Content-Type: application/json
 
  {
     "email" : "phuocvungoc9997@gmail.com",
-    "password" : "1"
+    "password" : "123456789",
+    "confirmPassword" : "123456789"
  }
 
         
