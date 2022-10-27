@@ -1,5 +1,7 @@
 const Product = require("../models/product");
 
+const { validationResult } = require("express-validator");
+
 exports.getProducts = (req, res, next) => {
   Product.find()
     //.select("title price -_id") // Quản lí trường nào được hiển thị
@@ -22,6 +24,12 @@ exports.postAddProduct = (req, res, next) => {
     imageUrl: imageUrl,
     userId: req.user,
   });
+
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(422).json(errors.array()[0].msg);
+  }
+
   product
     .save()
     .then((result) => {

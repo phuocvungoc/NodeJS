@@ -4,12 +4,19 @@ const adminController = require("../controllers/admin");
 
 const isAuth = require("../middleware/is-auth");
 
+const { validateAddProduct } = require("../middleware/validate");
+
 const router = express.Router();
 
 // /admin/products => GET
 router.get("/products", adminController.getProducts);
 
-router.post("/add-product", isAuth, adminController.postAddProduct);
+router.post(
+  "/add-product",
+  isAuth,
+  validateAddProduct,
+  adminController.postAddProduct
+);
 
 router.get("/edit-product/:productId", isAuth, adminController.getEditProduct);
 
