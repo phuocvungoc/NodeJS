@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 function EditProduct() {
+  const [err, setErr] = useState("");
   const [product, setProduct] = useState([]);
   const params = useParams();
   useEffect(() => {
@@ -31,14 +32,19 @@ function EditProduct() {
         window.location.href = "http://localhost:3000/admin/products";
         return res.data;
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if (err.response.status == 422) {
+          setErr(err.response.data);
+        }
+      });
   };
 
   return (
     <main>
+      {err && <div className="user-message user-message--error">{err}</div>}
       <form className="product-form" type="submit" onSubmit={postEditProduct}>
         <div className="form-control">
-          <label for="title">Title</label>
+          <label htmlFor="title">Title</label>
           <input
             type="text"
             name="title"
@@ -47,7 +53,7 @@ function EditProduct() {
           />
         </div>
         <div className="form-control">
-          <label for="imageUrl">Image URL</label>
+          <label htmlFor="imageUrl">Image URL</label>
           <input
             type="text"
             name="imageUrl"
@@ -56,7 +62,7 @@ function EditProduct() {
           />
         </div>
         <div className="form-control">
-          <label for="price">Price</label>
+          <label htmlFor="price">Price</label>
           <input
             type="number"
             name="price"
@@ -66,7 +72,7 @@ function EditProduct() {
           />
         </div>
         <div className="form-control">
-          <label for="description">Description</label>
+          <label htmlFor="description">Description</label>
           <textarea
             name="description"
             id="description"

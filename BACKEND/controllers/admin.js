@@ -53,6 +53,12 @@ exports.postEditProduct = (req, res, next) => {
   const updatedPrice = req.body.price;
   const updatedImageUrl = req.body.imageUrl;
   const updatedDesc = req.body.description;
+
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(422).json(errors.array()[0].msg);
+  }
+
   Product.findById(prodId)
     .then((product) => {
       product.title = updatedTitle;
