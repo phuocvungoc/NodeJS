@@ -25,7 +25,7 @@ function EditProduct() {
 
     axios
       .post("/api/admin/edit-product", updateProduct, {
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "multipart/form-data" },
       })
       .then((res) => {
         alert("Edit product success!");
@@ -52,7 +52,7 @@ function EditProduct() {
             defaultValue={product.title}
           />
         </div>
-        <div className="form-control">
+        {/* <div className="form-control">
           <label htmlFor="imageUrl">Image URL</label>
           <input
             type="text"
@@ -60,6 +60,10 @@ function EditProduct() {
             id="imageUrl"
             defaultValue={product.imageUrl}
           />
+        </div> */}
+        <div className="form-control">
+          <label htmlFor="image">Image</label>
+          <input type="file" name="image" id="image" />
         </div>
         <div className="form-control">
           <label htmlFor="price">Price</label>

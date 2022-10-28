@@ -61,7 +61,7 @@ app.use("/api/auth", authRoutes);
 app.use(errorController.get404);
 
 app.use((error, req, res, next) => {
-  res.status(error.httpStatusCode).json(error.message);
+  res.status(error.httpStatusCode || 500).json(error.message);
 });
 
 mongoose

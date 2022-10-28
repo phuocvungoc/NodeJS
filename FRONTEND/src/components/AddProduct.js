@@ -5,15 +5,16 @@ const AddProduct = () => {
   const [err, setErr] = useState("");
   const postAddProduct = (e) => {
     e.preventDefault();
+    console.log(e.target.image.files[0]);
     const newProduct = {
       title: e.target.title.value,
-      imageUrl: e.target.imageUrl.value,
+      image: e.target.image.files[0],
       description: e.target.description.value,
       price: e.target.price.value,
     };
     axios
       .post("/api/admin/add-product", newProduct, {
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "multipart/form-data" },
       })
       .then((res) => {
         alert("Add product success!");
@@ -36,8 +37,8 @@ const AddProduct = () => {
           <input type="text" name="title" id="title" />
         </div>
         <div className="form-control">
-          <label htmlFor="imageUrl">Image URL</label>
-          <input type="text" name="imageUrl" id="imageUrl" />
+          <label htmlFor="image">Image</label>
+          <input type="file" name="image" id="image" />
         </div>
         <div className="form-control">
           <label htmlFor="price">Price</label>

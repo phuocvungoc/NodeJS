@@ -52,16 +52,15 @@ exports.validateSignup = [
 ];
 
 exports.validateAddProduct = [
-  body("title")
+  check("title")
     .isString()
     .isLength({ min: 5 })
     .trim()
     .withMessage("Please enter a title with text and at least 5 characters."),
-  body("imageUrl").isURL().withMessage("Please enter a valid image URL."),
-  body("price")
+  check("price")
     .isFloat()
     .withMessage("Please enter a price with float number."),
-  body("description")
+  check("description")
     .isLength({ min: 5 })
     .trim()
     .withMessage(
