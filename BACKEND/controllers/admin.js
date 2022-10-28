@@ -22,8 +22,6 @@ exports.postAddProduct = (req, res, next) => {
   const price = req.body.price;
   const description = req.body.description;
 
-  console.log(image);
-
   if (!image) {
     return res.status(422).json("Attached file is not an image.");
   }

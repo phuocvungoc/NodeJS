@@ -42,7 +42,12 @@ class Main extends Component {
             <h1 className="product__title">{product.title}</h1>
           </header>
           <div className="card__image">
-            <img src={product.imageUrl} alt={product.title} />
+            <img
+              src={product.imageUrl}
+              alt={product.title}
+              width="150px"
+              height="300px"
+            />
           </div>
           <div className="card__content">
             <h2 className="product__price">{product.price}$</h2>

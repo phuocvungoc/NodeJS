@@ -4,10 +4,12 @@ const multer = require("multer");
 require("dotenv").config();
 
 cloudinary.config({
-  cloud_name: "dokmmbsv5",
-  api_key: "712974115911486",
-  api_secret: "Fef8K0cnFoGvBj21d_Ny3TXJl78",
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_KEY,
+  api_secret: process.env.CLOUDINARY_SECRET,
 });
+
+cloudinary.image({ width: 70, height: 53, crop: "scale" });
 
 const storage = new CloudinaryStorage({
   cloudinary,
