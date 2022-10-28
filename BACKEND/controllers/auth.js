@@ -2,6 +2,8 @@ const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
 const { validationResult } = require("express-validator");
 
+const { getErr500 } = require("../controllers/error");
+
 const User = require("../models/user");
 
 const transporter = nodemailer.createTransport({
@@ -41,7 +43,7 @@ exports.postSignup = (req, res, next) => {
       });
     })
     .catch((err) => {
-      console.log(err);
+      return next(getErr500(err));
     });
 };
 
@@ -76,7 +78,9 @@ exports.postLogin = (req, res, next) => {
           console.log(err);
         });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      return next(getErr500(err));
+    });
 };
 
 exports.postLogout = (req, res, next) => {

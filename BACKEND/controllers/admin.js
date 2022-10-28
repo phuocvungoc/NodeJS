@@ -1,5 +1,7 @@
 const Product = require("../models/product");
 
+const { getErr500 } = require("../controllers/error");
+
 const { validationResult } = require("express-validator");
 
 exports.getProducts = (req, res, next) => {
@@ -9,7 +11,9 @@ exports.getProducts = (req, res, next) => {
     .then((products) => {
       res.send(products);
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      return next(getErr500(err));
+    });
 };
 
 exports.postAddProduct = (req, res, next) => {
@@ -35,7 +39,9 @@ exports.postAddProduct = (req, res, next) => {
     .then((result) => {
       res.json(result);
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      return next(getErr500(err));
+    });
 };
 
 exports.getEditProduct = (req, res, next) => {
@@ -44,7 +50,9 @@ exports.getEditProduct = (req, res, next) => {
     .then((product) => {
       res.send(product);
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      return next(getErr500(err));
+    });
 };
 
 exports.postEditProduct = (req, res, next) => {
@@ -61,6 +69,7 @@ exports.postEditProduct = (req, res, next) => {
 
   Product.findById(prodId)
     .then((product) => {
+      throw new Error("Dum");
       product.title = updatedTitle;
       product.price = updatedPrice;
       product.description = updatedDesc;
@@ -68,7 +77,9 @@ exports.postEditProduct = (req, res, next) => {
       return product.save();
     })
     .then((result) => res.send(result))
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      return next(getErr500(err));
+    });
 };
 
 exports.postDeleteProduct = (req, res, next) => {
@@ -77,5 +88,7 @@ exports.postDeleteProduct = (req, res, next) => {
     .then(() => {
       res.send(req.body);
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      return next(getErr500(err));
+    });
 };

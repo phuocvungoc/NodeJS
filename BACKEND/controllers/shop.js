@@ -1,6 +1,8 @@
 const Product = require("../models/product");
 const Order = require("../models/order");
 
+const { getErr500 } = require("../controllers/error");
+
 exports.getCart = async (req, res, next) => {
   await req.user
     .populate("cart.items.productId")
@@ -8,7 +10,9 @@ exports.getCart = async (req, res, next) => {
       const products = user.cart.items;
       res.send(products);
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      return next(getErr500(err));
+    });
 };
 
 exports.postCart = (req, res, next) => {
@@ -19,6 +23,9 @@ exports.postCart = (req, res, next) => {
     })
     .then((result) => {
       res.send(result);
+    })
+    .catch((err) => {
+      return next(getErr500(err));
     });
 };
 
@@ -29,7 +36,9 @@ exports.postCartDeleteProduct = (req, res, next) => {
     .then((result) => {
       res.json(result);
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      return next(getErr500(err));
+    });
 };
 
 exports.getProduct = (req, res, next) => {
@@ -38,7 +47,9 @@ exports.getProduct = (req, res, next) => {
     .then((product) => {
       res.send(product);
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      return next(getErr500(err));
+    });
 };
 
 exports.postOrder = async (req, res, next) => {
@@ -58,11 +69,17 @@ exports.postOrder = async (req, res, next) => {
       req.user.clearCart();
       res.send(result);
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      return next(getErr500(err));
+    });
 };
 
 exports.getOrders = (req, res, next) => {
-  Order.find({ "user.userId": req.user._id }).then((orders) => {
-    res.send(orders);
-  });
+  Order.find({ "user.userId": req.user._id })
+    .then((orders) => {
+      res.send(orders);
+    })
+    .catch((err) => {
+      return next(getErr500(err));
+    });
 };
