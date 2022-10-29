@@ -37,7 +37,7 @@ class Cart extends Component {
     const prodId = e.target.productId.value;
     axios
       .post(
-        "/cart-delete-item",
+        "/api/shop/cart-delete-item",
         { prodId: prodId },
         {
           headers: { "Content-Type": "application/json" },

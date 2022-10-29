@@ -90,11 +90,11 @@ exports.postEditProduct = (req, res, next) => {
     });
 };
 
-exports.postDeleteProduct = (req, res, next) => {
-  const prodId = req.body.prodId;
-  Product.findByIdAndRemove(prodId)
+exports.deleteProduct = (req, res, next) => {
+  const prodId = req.params.prodId;
+  Product.deleteOne({ _id: prodId, userId: req.user._id })
     .then(() => {
-      res.send(req.body);
+      res.status(200).json("Success.");
     })
     .catch((err) => {
       return next(getErr500(err));
