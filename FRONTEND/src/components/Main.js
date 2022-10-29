@@ -45,7 +45,7 @@ class Main extends Component {
             <img
               src={product.imageUrl}
               alt={product.title}
-              width="150px"
+              width="120px"
               height="300px"
             />
           </div>

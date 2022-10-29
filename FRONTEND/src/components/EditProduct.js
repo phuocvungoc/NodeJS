@@ -18,7 +18,7 @@ function EditProduct() {
     const updateProduct = {
       productId: e.target.productId.value,
       title: e.target.title.value,
-      imageUrl: e.target.imageUrl.value,
+      image: e.target.image.files[0],
       description: e.target.description.value,
       price: e.target.price.value,
     };

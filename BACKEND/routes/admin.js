@@ -26,6 +26,7 @@ router.get("/edit-product/:productId", isAuth, adminController.getEditProduct);
 router.post(
   "/edit-product",
   isAuth,
+  fileUploader.single("image"),
   validateAddProduct,
   adminController.postEditProduct
 );

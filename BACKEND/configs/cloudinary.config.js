@@ -9,8 +9,6 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_SECRET,
 });
 
-cloudinary.image({ width: 70, height: 53, crop: "scale" });
-
 const storage = new CloudinaryStorage({
   cloudinary,
   allowedFormats: ["jpg", "png", "jpeg"],

@@ -224,3 +224,16 @@ main {
   background: rgb(255, 176, 176);
   color: red;
 }
+
+.cssButton {
+  font-size: 2rem;
+  background-color: #00695c;
+  color: white;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.cssButton:hover {
+  box-shadow: inset 0px 0px 0 200px #0bf103;
+  color: black;
+}
